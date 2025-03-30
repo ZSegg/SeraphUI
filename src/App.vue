@@ -1,6 +1,6 @@
-<template>
-  <div></div>
-</template>
+<template></template>
 
-<script setup lang="js"></script>
+<script setup lang="js">
+import {ref} from 'vue'
+</script>
 <style scoped></style>
