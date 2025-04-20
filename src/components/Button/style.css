@@ -1,0 +1,131 @@
+.sp-button {
+  --sp-button-font-weight: var(--sp-font-weight-primary);
+  --sp-button-border-color: var(--sp-border-color);
+  --sp-button-bg-color: var(--sp-fill-color-blank);
+  --sp-button-text-color: var(--sp-text-color-regular);
+  --sp-button-disabled-text-color: var(--sp-disabled-text-color);
+  --sp-button-disabled-bg-color: var(--sp-fill-color-blank);
+  --sp-button-disabled-border-color: var(--sp-border-color-light);
+  --sp-button-hover-text-color: var(--sp-color-primary);
+  --sp-button-hover-bg-color: var(--sp-color-primary-light-9);
+  --sp-button-hover-border-color: var(--sp-color-primary-light-7);
+  --sp-button-active-text-color: var(--sp-button-hover-text-color);
+  --sp-button-active-border-color: var(--sp-color-primary);
+  --sp-button-active-bg-color: var(--sp-button-hover-bg-color);
+  --sp-button-outline-color: var(--sp-color-primary-light-5);
+  --sp-button-active-color: var(--sp-text-color-primary);
+}
+
+.sp-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--sp-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  font-weight: var(--sp-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--sp-button-bg-color);
+  border: var(--sp-border);
+  border-color: var(--sp-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--sp-font-size-base);
+  border-radius: var(--sp-border-radius-base);
+  & + & {
+    margin-left: 12px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--sp-button-hover-text-color);
+    border-color: var(--sp-button-hover-border-color);
+    background-color: var(--sp-button-hover-bg-color);
+    outline: none;
+  }
+  &:active {
+    color: var(--sp-button-active-text-color);
+    border-color: var(--sp-button-active-border-color);
+    background-color: var(--sp-button-active-bg-color);
+    outline: none;
+  }
+  &.is-plain {
+    --sp-button-hover-text-color: var(--sp-color-primary);
+    --sp-button-hover-bg-color: var(--sp-fill-color-blank);
+    --sp-button-hover-border-color: var(--sp-color-primary);
+  }
+  /*round*/
+  &.is-round {
+    border-radius: var(--sp-border-radius-round);
+  }
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /*disabled*/
+  &.is-disabled,
+  &.is-disabled:hover,
+  &.is-disabled:focus,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled]:focus {
+    color: var(--sp-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--sp-button-disabled-bg-color);
+    border-color: var(--sp-button-disabled-border-color);
+  }
+
+  [class*='sp-icon'] + span {
+    margin-left: 6px;
+  }
+}
+
+@each $val in primary, success, warning, info, danger {
+  .sp-button--$(val) {
+    --sp-button-text-color: var(--sp-color-white);
+    --sp-button-bg-color: var(--sp-color-$(val));
+    --sp-button-border-color: var(--sp-color-$(val));
+    --sp-button-outline-color: var(--sp-color-$(val)-light-5);
+    --sp-button-active-color: var(--sp-color-$(val)-dark-2);
+    --sp-button-hover-text-color: var(--sp-color-white);
+    --sp-button-hover-bg-color: var(--sp-color-$(val)-light-3);
+    --sp-button-hover-border-color: var(--sp-color-$(val)-light-3);
+    --sp-button-active-bg-color: var(--sp-color-$(val)-dark-2);
+    --sp-button-active-border-color: var(--sp-color-$(val)-dark-2);
+    --sp-button-disabled-text-color: var(--sp-color-white);
+    --sp-button-disabled-bg-color: var(--sp-color-$(val)-light-5);
+    --sp-button-disabled-border-color: var(--sp-color-$(val)-light-5);
+  }
+  .sp-button--$(val).is-plain {
+    --sp-button-text-color: var(--sp-color-$(val));
+    --sp-button-bg-color: var(--sp-color-$(val)-light-9);
+    --sp-button-border-color: var(--sp-color-$(val)-light-5);
+    --sp-button-hover-text-color: var(--sp-color-white);
+    --sp-button-hover-bg-color: var(--sp-color-$(val));
+    --sp-button-hover-border-color: var(--sp-color-$(val));
+    --sp-button-active-text-color: var(--sp-color-white);
+  }
+}
+
+.sp-button--large {
+  --sp-button-size: 40px;
+  height: var(--sp-button-size);
+  padding: 12px 19px;
+  font-size: var(--sp-font-size-base);
+  border-radius: var(--sp-border-radius-base);
+}
+.sp-button--small {
+  --sp-button-size: 24px;
+  height: var(--sp-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--sp-border-radius-base) - 1px);
+}

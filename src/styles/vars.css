@@ -1,0 +1,113 @@
+:root {
+  /* colors */
+  --sp-color-white: #ffffff;
+  --sp-color-black: #000000;
+
+  /* --sp-color-primary: #409eff;
+  --sp-color-primary-light-3: #79bbff;
+  --sp-color-primary-light-5: #a0cfff;
+  --sp-color-primary-light-7: #c6e2ff;
+  --sp-color-primary-light-8: #d9ecff;
+  --sp-color-primary-light-9: #ecf5ff;
+  --sp-color-primary-dark-2: #337ecc;
+  --sp-color-success: #67c23a;
+  --sp-color-success-light-3: #95d475;
+  --sp-color-success-light-5: #b3e19d;
+  --sp-color-success-light-7: #d1edc4;
+  --sp-color-success-light-8: #e1f3d8;
+  --sp-color-success-light-9: #f0f9eb;
+  --sp-color-success-dark-2: #529b2e;
+  --sp-color-warning: #e6a23c;
+  --sp-color-warning-light-3: #eebe77;
+  --sp-color-warning-light-5: #f3d19e;
+  --sp-color-warning-light-7: #f8e3c5;
+  --sp-color-warning-light-8: #faecd8;
+  --sp-color-warning-light-9: #fdf6ec;
+  --sp-color-warning-dark-2: #b88230;
+  --sp-color-danger: #f56c6c;
+  --sp-color-danger-light-3: #f89898;
+  --sp-color-danger-light-5: #fab6b6;
+  --sp-color-danger-light-7: #fcd3d3;
+  --sp-color-danger-light-8: #fde2e2;
+  --sp-color-danger-light-9: #fef0f0;
+  --sp-color-danger-dark-2: #c45656;
+  --sp-color-info: #909399;
+  --sp-color-info-light-3: #b1b3b8;
+  --sp-color-info-light-5: #c8c9cc;
+  --sp-color-info-light-7: #dedfe0;
+  --sp-color-info-light-8: #e9e9eb;
+  --sp-color-info-light-9: #f4f4f5;
+  --sp-color-info-dark-2: #73767a; */
+
+  /* 使用循环生成主题色, light 是原来的颜色按比例与白色进行混合, black 则是与黑色混合 */
+  --colors: (
+    primary: #409eff,
+    success: #67c23a,
+    warning: #e6a23c,
+    danger: #f56c6c,
+    info: #909399
+  );
+
+  @each $val, $color in var(--colors) {
+    --sp-color-$(val): $(color);
+    @for $i from 3 to 9 by 2 {
+      --sp-color-$(val)-light-$(i): mix(#fff, $(color), calc($(i) * 10%));
+    }
+    --sp-color-$(val)-light-8: mix(#fff, $(color), 80%);
+    --sp-color-$(val)-dark-2: mix(#000, $(color), 98%);
+  }
+
+  --sp-bg-color: #ffffff;
+  --sp-bg-color-page: #f2f3f5;
+  --sp-bg-color-overlay: #ffffff;
+  --sp-text-color-primary: #303133;
+  --sp-text-color-regular: #606266;
+  --sp-text-color-secondary: #909399;
+  --sp-text-color-placeholder: #a8abb2;
+  --sp-text-color-disabled: #c0c4cc;
+  --sp-border-color: #dcdfe6;
+  --sp-border-color-light: #e4e7ed;
+  --sp-border-color-lighter: #ebeef5;
+  --sp-border-color-extra-light: #f2f6fc;
+  --sp-border-color-dark: #d4d7de;
+  --sp-border-color-darker: #cdd0d6;
+  --sp-fill-color: #f0f2f5;
+  --sp-fill-color-light: #f5f7fa;
+  --sp-fill-color-lighter: #fafafa;
+  --sp-fill-color-extra-light: #fafcff;
+  --sp-fill-color-dark: #ebedf0;
+  --sp-fill-color-darker: #e6e8eb;
+  --sp-fill-color-blank: #ffffff;
+
+  /* border */
+  --sp-border-width: 1px;
+  --sp-border-style: solid;
+  --sp-border-color-hover: var(--sp-text-color-disabled);
+  --sp-border: var(--sp-border-width) var(--sp-border-style)
+    var(--sp-border-color);
+  --sp-border-radius-base: 4px;
+  --sp-border-radius-small: 2px;
+  --sp-border-radius-round: 20px;
+  --sp-border-radius-circle: 100%;
+
+  /*font*/
+  --sp-font-size-extra-large: 20px;
+  --sp-font-size-large: 18px;
+  --sp-font-size-medium: 16px;
+  --sp-font-size-base: 14px;
+  --sp-font-size-small: 13px;
+  --sp-font-size-extra-small: 12px;
+  --sp-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial,
+    sans-serif;
+  --sp-font-weight-primary: 500;
+
+  /*disabled*/
+  --sp-disabled-bg-color: var(--sp-fill-color-light);
+  --sp-disabled-text-color: var(--sp-text-color-placeholder);
+  --sp-disabled-border-color: var(--sp-border-color-light);
+
+  /*animation*/
+  --sp-transition-duration: 0.4s;
+  --sp-transition-duration-fast: 0.2s;
+}
