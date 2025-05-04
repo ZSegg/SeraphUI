@@ -11,6 +11,6 @@
 
 @each $val in primary, info, success, warning, danger {
   .sp-icon--$(val) {
-    --sp-icon-color: var(--sp-color-$(val));
+    --sp-icon-color: var(--sp-color-$(val)-light-7);
   }
 }

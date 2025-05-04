@@ -5,7 +5,7 @@
     :style="cutomerStyle"
     v-bind="$attrs"
   >
-    <FontAwesomeIcon v-bind="filteredProps" />
+    <slot> <FontAwesomeIcon v-bind="filteredProps" /></slot>
   </i>
 </template>
 

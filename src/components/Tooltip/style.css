@@ -1,0 +1,65 @@
+.sp-tooltip {
+  --sp-popover-bg-color: var(--sp-bg-color-overlay);
+  --sp-popover-font-size: var(--sp-font-size-base);
+  --sp-popover-border-color: var(--sp-border-color);
+  --sp-popover-padding: 12px;
+  --sp-popover-border-radius: 4px;
+  display: inline-block;
+}
+.sp-tooltip {
+  .sp-tooltip__popper {
+    background: var(--sp-popover-bg-color);
+    border-radius: var(--sp-popover-border-radius);
+    border: 1px solid var(--sp-popover-border-color);
+    padding: var(--sp-popover-padding);
+    color: var(--sp-text-color-regular);
+    line-height: 1.4;
+    text-align: justify;
+    font-size: var(--sp-popover-font-size);
+    box-shadow: var(--sp-box-shadow-light);
+    word-break: break-all;
+    box-sizing: border-box;
+    z-index: 1000;
+    #arrow {
+      position: absolute;
+      width: 5.5px;
+      height: 5.5px;
+      box-sizing: border-box;
+      transform: rotate(45deg);
+      background: var(--sp-popover-bg-color);
+    }
+    &[data-popper-placement^='top'] > #arrow {
+      bottom: -3.5px;
+      border-right: 1px solid var(--sp-popover-border-color);
+      border-bottom: 1px solid var(--sp-popover-border-color);
+    }
+
+    &[data-popper-placement^='bottom'] > #arrow {
+      top: -3.5px;
+      border-left: 1px solid var(--sp-popover-border-color);
+      border-top: 1px solid var(--sp-popover-border-color);
+    }
+
+    &[data-popper-placement^='left'] > #arrow {
+      right: -3.5px;
+      border-right: 1px solid var(--sp-popover-border-color);
+      border-top: 1px solid var(--sp-popover-border-color);
+    }
+
+    &[data-popper-placement^='right'] > #arrow {
+      left: -3.5px;
+      border-left: 1px solid var(--sp-popover-border-color);
+      border-bottom: 1px solid var(--sp-popover-border-color);
+    }
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 1s;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+}

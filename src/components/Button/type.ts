@@ -1,11 +1,4 @@
-export type ButtonType =
-  | 'primary'
-  | 'secondary'
-  | 'danger'
-  | 'warning'
-  | 'info'
-  | 'success'
-  | 'default'
+export type ButtonType = 'primary' | 'danger' | 'warning' | 'info' | 'success'
 
 export type ButtonSize = 'large' | 'medium' | 'small' | 'mini'
 export type ButtonShape = 'circle' | 'round' | 'square'

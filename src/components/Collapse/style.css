@@ -53,8 +53,3 @@
   padding-top: 20px;
   padding-bottom: 25px;
 }
-
-.slide-enter-active,
-.slide-leave-active {
-  transition: height var(--sp-transition-duration) ease-in-out;
-}

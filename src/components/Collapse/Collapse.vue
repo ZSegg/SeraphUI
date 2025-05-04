@@ -19,14 +19,15 @@ defineOptions({
 // 使用 defineModel 来绑定 v-model
 const activeNames = defineModel<NameType[]>({ required: true });
 
-console.log("activeNames:", activeNames);
+// console.log("activeNames:", activeNames.value);
 
-console.log("props:", props);
+// console.log("props:", props);
 
 const handleItemClick = (name: NameType) => {
   if (props.accordion) {
     // 手风琴模式，只允许一个展开
     activeNames.value = activeNames.value[0] === name ? [] : [name];
+    ("");
   } else {
     // 普通模式，可以多选
     const index = activeNames.value.indexOf(name);
@@ -39,7 +40,8 @@ const handleItemClick = (name: NameType) => {
   }
 
   // 触发 change 事件
-  emits("change", activeNames.value);
+  // 这里设置成传值的方式是为了方便测试
+  emits("change", [...activeNames.value]);
 };
 
 provide(collapseContextKey, {

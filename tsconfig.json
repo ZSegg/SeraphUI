@@ -4,6 +4,8 @@
     "module": "esnext",
     "strict": true,
     "jsx": "preserve",
+    "jsxFactory": "h", // Vue 3 默认使用 `h` 渲染函数
+    "jsxFragmentFactory": "Fragment", // 支持 Fragment
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -15,6 +17,12 @@
     },
     "noImplicitAny": false
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vitest.config.ts"
+  ],
   "exclude": ["node_modules"]
 }

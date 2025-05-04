@@ -1,0 +1,87 @@
+.sp-alert {
+  --sp-alert-width: 500px;
+  --sp-alert-bg-color: var(--sp-fill-color);
+  --sp-alert-text-color: var(--sp-text-color-primary);
+  --sp-alert-margin: 12px;
+  --sp-alert-padding: 12px;
+  --sp-alert-gap: 10px;
+  --sp-alert-main-margin: 10px;
+  --sp-alert-header-font-size: 18px;
+  --sp-alert-header-margin: 5px;
+  --sp-alert-content-font-size: 13px;
+  --sp-alert-icon-margin: 10px;
+
+  /* width: var(--sp-alert-width); */
+  background-color: var(--sp-alert-bg-color);
+  color: var(--sp-alert-text-color);
+  display: flex;
+  justify-content: space-between;
+  margin: var(--sp-alert-margin);
+  padding: var(--sp-alert-padding);
+  gap: var(--sp-alert-gap); /* 统一控制间距 */
+}
+
+.sp-alert__main {
+  flex-grow: 1; /* 关键：占据剩余空间 */
+  margin: 0;
+}
+
+.sp-alert__icon {
+  margin: 0;
+  flex-shrink: 0; /* 防止图标被压缩 */
+}
+
+.sp-alert__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: var(--sp-alert-text-color);
+  font-size: var(--sp-alert-header-font-size);
+  font-weight: 500;
+  transition: border-bottom-color var(--sp-transition-duration);
+  outline: none;
+  .sp-alert__close {
+    cursor: pointer;
+  }
+  & + * {
+    margin-top: var(--sp-alert-header-margin);
+  }
+  & > .sp-alert__title {
+    flex-grow: 1;
+    text-align: center;
+  }
+}
+
+.sp-alert__content {
+  will-change: height;
+  box-sizing: border-box;
+  font-size: var(--sp-alert-content-font-size);
+  color: var(--sp-alert-text-color);
+  text-align: justify;
+  & .content-center {
+    text-align: center;
+  }
+}
+
+@each $val in primary, info, success, warning, danger {
+  .sp-alert--$(val) {
+    --sp-alert-bg-color: var(--sp-color-$(val));
+    &.sp-alert--light {
+      --sp-alert-bg-color: var(--sp-color-$(val)-light-8);
+    }
+    &.sp-alert--dark {
+      --sp-alert-bg-color: var(--sp-color-$(val)-dark-2);
+    }
+  }
+}
+
+.alert-fade-enter-active,
+.alert-fade-leave-active {
+  transition: opacity var(--sp-transition-duration) ease;
+}
+
+.alert-fade-enter-from,
+.alert-fade-leave-to {
+  opacity: 0;
+}

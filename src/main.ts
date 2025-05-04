@@ -11,6 +11,8 @@ library.add(fas)
 
 const app = createApp(App)
 
+// console.log('App:', App.render.toString())
+
 app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.mount('#app')
