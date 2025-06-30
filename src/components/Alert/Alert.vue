@@ -60,7 +60,7 @@ const emit = defineEmits<AlertEmits>();
 
 const props = withDefaults(defineProps<AlertProps>(), {
   "show-icon": true, // 默认值为 true
-  closable: true,
+  closable: false,
 });
 
 const visiable = ref<boolean>(true);

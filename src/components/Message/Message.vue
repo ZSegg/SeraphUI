@@ -1,5 +1,5 @@
 <template>
-  <Transition :name="transitionName" @enter="setHeight" @after-leave="destroyComponent">
+  <Transition :name="transitionName" @enter="setHeight" @after-leave="destoryComponent">
     <div
       ref="messageRef"
       class="sp-message"
@@ -91,7 +91,7 @@ async function setHeight() {
   height.value = messageRef.value!.getBoundingClientRect().height; // 获取高度
 }
 
-function destroyComponent() {
+function destoryComponent() {
   props.onDestory();
 }
 
@@ -109,7 +109,7 @@ onMounted(async () => {
 defineExpose({
   visiable,
   bottomOffset,
-  destroyComponent,
+  destoryComponent,
 });
 </script>
 <style scoped></style>

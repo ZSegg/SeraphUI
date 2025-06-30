@@ -3,7 +3,12 @@
     <slot />
 
     <template #content>
-      <ul class="sp-dropdown__menu" :id="size ? `menu-${size}` : ''" ref="menuRef">
+      <ul
+        class="sp-dropdown__menu"
+        style="padding: 0"
+        :id="size ? `menu-${size}` : ''"
+        ref="menuRef"
+      >
         <template v-for="item in menuOptions" :key="item.key">
           <li v-if="item.divided" role="separator" class="divided-placeholder" />
           <li
@@ -32,7 +37,7 @@ import RenderVnode from "../common/RenderVnode";
 
 const props = withDefaults(defineProps<DropdownProps>(), {
   hideAfterClick: true,
-  "transition-animation": "slide",
+  "transition-animation": "fade",
 });
 const emits = defineEmits<DropdownEmits>();
 const tooltipProps = computed(() => {

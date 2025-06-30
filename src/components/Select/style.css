@@ -1,0 +1,80 @@
+.sp-select {
+  --sp-select-item-hover-bg-color: var(--sp-fill-color-light);
+  --sp-select-item-font-size: var(--sp-font-size-base);
+  --sp-select-item-font-color: var(--sp-text-color-regular);
+  --sp-select-item-selected-font-color: var(--sp-color-primary);
+  --sp-select-item-disabled-font-color: var(--sp-text-color-placeholder);
+  --sp-select-input-focus-border-color: var(--sp-color-primary);
+}
+
+.sp-select {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 32px;
+  .sp-tooltip .sp-tooltip__popper {
+    padding: 0;
+  }
+  .sp-input.is-focus .sp-input__wrapper {
+    box-shadow: 0 0 0 1px var(--sp-select-input-focus-border-color) inset;
+  }
+  .sp-input {
+    .header-angle {
+      transition: transform var(--sp-transition-duration);
+      &.is-active {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .sp-input__inner {
+    cursor: pointer;
+  }
+
+  .sp-select__nodata,
+  .sp-select__loading {
+    padding: 10px 0;
+    margin: 0;
+    text-align: center;
+    color: var(--sp-text-color-secondary);
+    font-size: var(--sp-select-item-font-size);
+  }
+  .sp-select__menu {
+    list-style: none;
+    margin: 6px 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .sp-select__menu-item {
+    margin: 0;
+    font-size: var(--sp-select-item-font-size);
+    padding: 0 32px 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--sp-select-item-font-color);
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--sp-select-item-hover-bg-color);
+    }
+    &.is-selected {
+      color: var(--sp-select-item-selected-font-color);
+      font-weight: 700;
+    }
+    &.is-disabled {
+      color: var(--sp-select-item-disabled-font-color);
+      cursor: not-allowed;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    &.is-highlighted {
+      background-color: var(--sp-select-item-hover-bg-color);
+      color: var(--sp-select-item-selected-font-color);
+      /* border: 1px solid var(--sp-select-item-selected-font-color); */
+    }
+  }
+}

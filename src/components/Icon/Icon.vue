@@ -18,6 +18,7 @@ import { omit } from "lodash-es";
 defineOptions({
   name: "SpIcon",
   inheritAttrs: false,
+  size: "xl",
 });
 
 const props = defineProps<IconProps>();

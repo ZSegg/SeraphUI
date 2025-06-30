@@ -36,7 +36,7 @@ const handleItemClick = (name: NameType) => {
     } else {
       activeNames.value.splice(index, 1);
     }
-    console.log("act:", activeNames.value);
+    // console.log("act:", activeNames.value);
   }
 
   // 触发 change 事件

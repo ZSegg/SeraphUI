@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<TransitionProps>(), {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 1.3s;
+  transition: opacity 0.5s;
 }
 
 .fade-enter-from,

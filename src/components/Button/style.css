@@ -36,7 +36,7 @@
   background-color: var(--sp-button-bg-color);
   border: var(--sp-border);
   border-color: var(--sp-button-border-color);
-  padding: 8px 15px;
+  padding: 15px;
   font-size: var(--sp-font-size-base);
   border-radius: var(--sp-border-radius-base);
   & + & {
@@ -66,7 +66,7 @@
   }
   /*circle*/
   &.is-circle {
-    border-radius: 50%;
+    border-radius: 100%;
     padding: 8px;
   }
   /*disabled*/

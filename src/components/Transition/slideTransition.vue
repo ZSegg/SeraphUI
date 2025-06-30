@@ -65,7 +65,7 @@ watch(
 .slide-move,
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 1s ease-in-out;
+  transition: height 1s ease-in-out;
   overflow: hidden;
 }
 

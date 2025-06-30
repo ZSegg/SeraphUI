@@ -1,10 +1,11 @@
-import { render, h, ref, shallowReactive } from 'vue'
+import { render, h, ref, shallowReactive, reactive } from 'vue'
 import type { CreateMessageProps, MessageContext } from './type'
 import SpMessage from './Message.vue'
 import useZIndex from '@/hooks/useZIndex'
 
 let seed = 1
-const instances = shallowReactive<MessageContext[]>([])
+// const instances = shallowReactive<MessageContext[]>([])
+const instances = reactive<MessageContext[]>([])
 
 export function createMessage(props: CreateMessageProps) {
   const id = `message_${seed++}`
@@ -29,7 +30,6 @@ export function createMessage(props: CreateMessageProps) {
     id,
     ...props,
     onDestory,
-
     zIndex,
   }
   const vnode = h(SpMessage, messageProps)
@@ -46,6 +46,7 @@ export function createMessage(props: CreateMessageProps) {
     destory: menualDestory,
   }
   instances.push(instance)
+  // console.log(instance)
   return instance
 }
 
@@ -60,7 +61,7 @@ export const getLastBottomOffset = (id) => {
   return instances[index - 1].vm.exposed!.bottomOffset.value
 }
 
-export const colseAll = () => {
+export const closeAll = () => {
   instances.forEach((instance) => {
     instance.destory()
   })

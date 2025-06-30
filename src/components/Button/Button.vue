@@ -5,7 +5,6 @@
     :class="{
       [`sp-button--${type}`]: type,
       [`sp-button--${size}`]: size,
-      [`sp-button--${shape}`]: shape,
       'is-plain': plain,
       'is-round': round,
       'is-circle': circle,
@@ -17,8 +16,8 @@
     :type="nativeType"
   >
     <SpIcon icon="spinner" spin v-if="loading" />
-    <SpIcon :icon="icon" v-if="icon" />
-    <span><slot /></span>
+    <SpIcon :icon="icon" v-else-if="icon" />
+    <slot />
   </button>
 </template>
 
@@ -35,7 +34,6 @@ defineOptions({
 const {
   type,
   size,
-  shape,
   plain,
   round,
   circle,
@@ -50,9 +48,3 @@ defineExpose({
   ref: _ref,
 });
 </script>
-
-<style>
-.sp-button {
-  background-color: var(--main-bg-color);
-}
-</style>

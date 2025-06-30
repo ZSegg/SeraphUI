@@ -8,7 +8,6 @@ function useClickOutside(
   const handler = (e: MouseEvent) => {
     if (!elementRef.value || !e.target) return
     if (!elementRef.value.contains(e.target as HTMLElement)) {
-      // console.log('在元素外')
       callback(e)
     } else {
       // console.log('在元素内')

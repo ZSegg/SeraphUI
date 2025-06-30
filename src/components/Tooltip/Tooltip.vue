@@ -53,12 +53,8 @@ const options = computed(() => ({
     {
       name: "offset",
       options: {
-        offset: [9, 9],
+        offset: [0, 9],
       },
-    },
-    {
-      name: "arrow",
-      options: {},
     },
   ],
   ...props.popperOptions,
@@ -76,14 +72,10 @@ let events: Record<string, any> = {};
 let popperEvents: Record<string, any> = {};
 let outerEvents: Record<string, any> = {};
 
-let openTimes = 0,
-  closeTimes = 0;
-
 const open = () => {
   setTimeout(() => {
     isOpen.value = true;
     emits("visible-change", isOpen.value);
-    // console.log(`open:${++openTimes}`);
   }, props.openDelay);
 };
 
@@ -91,7 +83,6 @@ const close = () => {
   setTimeout(() => {
     isOpen.value = false;
     emits("visible-change", isOpen.value);
-    // console.log(`close:${++closeTimes}`);
   }, props.closeDelay);
 };
 
@@ -117,13 +108,16 @@ const togglePopper = () => {
 };
 
 const clickOutside = () => {
+  // console.log("click outside");
   if (props.trigger === "click" && isOpen.value && !props.manual) {
     closeFinal();
+  }
+  if (isOpen.value) {
+    emits("click-outside", true);
   }
 };
 
 const attachEvents = () => {
-  //   console.log(props.trigger);
   if (props.trigger === "hover") {
     events["mouseenter"] = openFinal;
     popperEvents["mouseenter"] = openFinal;
@@ -131,7 +125,6 @@ const attachEvents = () => {
   } else if (props.trigger === "click") {
     events["click"] = togglePopper;
   }
-  //   console.log(events);
 };
 
 useClickOutside(poperContainer, clickOutside);
@@ -139,8 +132,6 @@ useClickOutside(poperContainer, clickOutside);
 if (!props.manual) {
   attachEvents();
 }
-
-// console.log("manual", props.manual);
 
 watch(
   () => props.manual,
@@ -152,7 +143,17 @@ watch(
     } else {
       attachEvents();
     }
+    // console.log(
+    //   isManual,
+    //   props.trigger,
+    //   "events:",
+    //   events,
+    //   "outer:",
+    //   outerEvents,
+    //   popperEvents
+    // );
   }
+  // { immediate: true }
 );
 
 watch(
@@ -194,8 +195,3 @@ defineExpose<TooltipInstance>({
   hide: closeFinal,
 });
 </script>
-<style scoped>
-.sp-tooltip {
-  border: 1px solid black;
-}
-</style>

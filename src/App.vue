@@ -1,6 +1,30 @@
 <template>
+  <SpSwitch
+    v-model="switchValue"
+    active-text="on1111111111111111111111111111111111111111111111111111111111111111111111111"
+    inactive-text="off"
+  />
+  <!-- 
+  <SpSelect
+    clearable
+    :options="selectOptions"
+    v-model="selectModel"
+    placeholder="基础选择器"
+    filterable
+    remote
+    :remote-method="remoteMethod1"
+  /> -->
+
+  <SpSelect
+    clearable
+    :options="selectOptions"
+    v-model="selectModel1"
+    placeholder="选择器"
+    multiple
+  />
+
   <header>
-    <SpDropdown
+    <!-- <SpDropdown
       ref="dropdownRef"
       placement="bottom"
       :trigger="trigger"
@@ -9,7 +33,7 @@
       @select="(e) => console.log(e)"
     >
       <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-    </SpDropdown>
+    </SpDropdown> -->
   </header>
   <!-- <button @click="tran">test</button>
   <SpTooltip ref="dropdownRef" :trigger="trigger" placement="bottom">
@@ -128,15 +152,19 @@
     <SpCollapseItem name="b" title="title b"></SpCollapseItem>
     <SpCollapseItem name="c" title="title c" disabled></SpCollapseItem>
   </SpCollapse> -->
+
+  <SpInput type="text" v-model="inputValue" clearable @input="(e) => (inputValue1 = e)" />
+  <h1>{{ inputValue1 }}</h1>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, h } from "vue";
+import { ref, onMounted, h, createVNode } from "vue";
 import { createPopper } from "@popperjs/core";
 import type { Instance, Options } from "@popperjs/core";
 import type { TooltipInstance } from "./components/Tooltip/type";
 import type { ButtonInstance } from "./components/Button/type";
 import type { MenuOption, DropdownInstance } from "./components/Dropdown/type";
+import type { SelectOption } from "./components/Select/type";
 import SpButton from "./components/Button/Button.vue";
 import SpCollapse from "./components/Collapse/Collapse.vue";
 import SpCollapseItem from "./components/Collapse/CollapseItem.vue";
@@ -145,6 +173,10 @@ import SpAlert from "./components/Alert/Alert.vue";
 import SpTooltip from "@/components/Tooltip/Tooltip.vue";
 import SpDropdown from "@/components/Dropdown/Dropdown.vue";
 import SpMessage from "@/components/Message/Message.vue";
+import SpInput from "@/components/Input/Input.vue";
+import SpSwitch from "@/components/Switch/switch.vue";
+
+import SpSelect from "@/components/Select/Select.vue";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -156,20 +188,25 @@ const pRef = ref<HTMLElement | null>(null);
 const fn1 = () => console.log("fn1");
 const fn2 = () => console.log("fn2");
 
+const inputValue = ref("");
+const inputValue1 = ref("");
+
 useEventListener(pRef, "click", fn1);
 useEventListener(document.body, "click", () => {
   console.log("111");
 });
 
-for (let i = 1; i <= 5; i++) {
-  const instance = createMessage({
-    message: `hello message ${i}`,
-    // duration: i * 2000,
-    duration: 0,
-    showClose: true,
-  });
-  // setTimeout(() => instance.destory(), 2000 * i);
-}
+const switchValue = ref(false);
+
+// for (let i = 1; i <= 5; i++) {
+//   const instance = createMessage({
+//     message: `hello message ${i}`,
+//     // duration: i * 2000,
+//     duration: 0,
+//     showClose: true,
+//   });
+//   // setTimeout(() => instance.destory(), 2000 * i);
+// }
 
 // import useMousePosition from "./hooks/useMousePosition";
 
@@ -205,6 +242,21 @@ const tran = () => {
   console.log(trigger.value);
 };
 
+const selectOptions = [
+  { label: "hello", value: 1 },
+  { label: "world", value: 2 },
+  { label: "test", value: 3 },
+  { label: "mark", value: 4 },
+  { label: "check", value: 5, disabled: true },
+];
+
+const selectRenderFunc = (option: SelectOption) => {
+  return h("h1", { innerHTML: option.label });
+};
+
+const selectModel = ref();
+const selectModel1 = ref([]);
+
 onMounted(() => {
   // dropdownRef.value?.show();
   // setTimeout(() => {
@@ -217,4 +269,85 @@ onMounted(() => {
     });
   }, 2000);
 });
+
+const states = [
+  "Alabama",
+  "Alaska",
+  "Arizona",
+  "Arkansas",
+  "California",
+  "Colorado",
+  "Connecticut",
+  "Delaware",
+  "Florida",
+  "Georgia",
+  "Hawaii",
+  "Idaho",
+  "Illinois",
+  "Indiana",
+  "Iowa",
+  "Kansas",
+  "Kentucky",
+  "Louisiana",
+  "Maine",
+  "Maryland",
+  "Massachusetts",
+  "Michigan",
+  "Minnesota",
+  "Mississippi",
+  "Missouri",
+  "Montana",
+  "Nebraska",
+  "Nevada",
+  "New Hampshire",
+  "New Jersey",
+  "New Mexico",
+  "New York",
+  "North Carolina",
+  "North Dakota",
+  "Ohio",
+  "Oklahoma",
+  "Oregon",
+  "Pennsylvania",
+  "Rhode Island",
+  "South Carolina",
+  "South Dakota",
+  "Tennessee",
+  "Texas",
+  "Utah",
+  "Vermont",
+  "Virginia",
+  "Washington",
+  "West Virginia",
+  "Wisconsin",
+  "Wyoming",
+];
+
+const remoteMethod = async (query: string) => {
+  if (!query) {
+    return [];
+  }
+  // 模拟异步操作
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  const options = states.filter((item) =>
+    item.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return options.map((label) => ({ label, value: label }));
+};
+
+const remoteMethod1 = async (query: string) => {
+  if (!query) {
+    return [];
+  }
+  // 模拟异步操作
+  const res = await fetch(`https://api.github.com/search/repositories?q=${query}`);
+  const data = await res.json();
+  const options = data.items.map((item: any) => ({
+    label: item.name,
+    value: item.id,
+  }));
+  return options;
+};
 </script>

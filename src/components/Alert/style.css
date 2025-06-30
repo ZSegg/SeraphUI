@@ -68,7 +68,7 @@
   .sp-alert--$(val) {
     --sp-alert-bg-color: var(--sp-color-$(val));
     &.sp-alert--light {
-      --sp-alert-bg-color: var(--sp-color-$(val)-light-8);
+      --sp-alert-bg-color: var(--sp-color-$(val)-light-3);
     }
     &.sp-alert--dark {
       --sp-alert-bg-color: var(--sp-color-$(val)-dark-2);

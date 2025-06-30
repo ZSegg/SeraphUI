@@ -17,9 +17,10 @@
     text-align: justify;
     font-size: var(--sp-popover-font-size);
     box-shadow: var(--sp-box-shadow-light);
-    word-break: break-all;
-    box-sizing: border-box;
+
     z-index: 1000;
+    word-wrap: break-word;
+    word-break: break-all;
     #arrow {
       position: absolute;
       width: 5.5px;
@@ -30,24 +31,28 @@
     }
     &[data-popper-placement^='top'] > #arrow {
       bottom: -3.5px;
+      left: 50%;
       border-right: 1px solid var(--sp-popover-border-color);
       border-bottom: 1px solid var(--sp-popover-border-color);
     }
 
     &[data-popper-placement^='bottom'] > #arrow {
       top: -3.5px;
+      left: 50%;
       border-left: 1px solid var(--sp-popover-border-color);
       border-top: 1px solid var(--sp-popover-border-color);
     }
 
     &[data-popper-placement^='left'] > #arrow {
       right: -3.5px;
+      top: 50%;
       border-right: 1px solid var(--sp-popover-border-color);
       border-top: 1px solid var(--sp-popover-border-color);
     }
 
     &[data-popper-placement^='right'] > #arrow {
       left: -3.5px;
+      top: 50%;
       border-left: 1px solid var(--sp-popover-border-color);
       border-bottom: 1px solid var(--sp-popover-border-color);
     }

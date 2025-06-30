@@ -7,10 +7,13 @@
   fill: currentColor;
   color: var(--sp-icon-color);
   font-size: inherit;
+  & + & {
+    margin-left: 10px;
+  }
 }
 
 @each $val in primary, info, success, warning, danger {
   .sp-icon--$(val) {
-    --sp-icon-color: var(--sp-color-$(val)-light-7);
+    --sp-icon-color: var(--sp-color-$(val)-light-3);
   }
 }
