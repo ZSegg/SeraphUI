@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
-import { createMessage, colseAll } from './method'
+import { createMessage, closeAll } from './method'
 
 // 等待动画完成函数
 const rAF = async () => {
@@ -40,7 +40,7 @@ describe('createMessage', () => {
     //    console.log('before:', document.body.innerHTML)
     let elements = document.body.querySelectorAll('.sp-message')
     expect(elements.length).toBe(2)
-    colseAll()
+    closeAll()
     await rAF()
     console.log('after:', document.body.innerHTML)
     elements = document.body.querySelectorAll('.sp-message')

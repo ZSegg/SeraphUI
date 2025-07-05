@@ -50,7 +50,7 @@ export function createMessage(props: CreateMessageProps) {
   return instance
 }
 
-export const getLastInstance = () => {
+export const getLastInstance = (): any => {
   return instances.at(-1) ?? null
   // 通过 .at(-1) 获取数组最后一项
 }

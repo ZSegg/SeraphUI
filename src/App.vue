@@ -1,4 +1,6 @@
 <template>
+  <!-- <h1>{{ $echo("world") }}</h1> -->
+
   <SpSwitch
     v-model="switchValue"
     active-text="on1111111111111111111111111111111111111111111111111111111111111111111111111"
@@ -15,16 +17,16 @@
     :remote-method="remoteMethod1"
   /> -->
 
-  <SpSelect
+  <!-- <SpSelect
     clearable
     :options="selectOptions"
     v-model="selectModel1"
     placeholder="选择器"
     multiple
-  />
+  /> -->
 
-  <header>
-    <!-- <SpDropdown
+  <!-- <header> -->
+  <!-- <SpDropdown
       ref="dropdownRef"
       placement="bottom"
       :trigger="trigger"
@@ -34,7 +36,7 @@
     >
       <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
     </SpDropdown> -->
-  </header>
+  <!-- </header> -->
   <!-- <button @click="tran">test</button>
   <SpTooltip ref="dropdownRef" :trigger="trigger" placement="bottom">
     <template #default>
@@ -55,7 +57,7 @@
   </SpTooltip> -->
 
   <!-- <SpButton ref="buttonRef">test Button</SpButton> -->
-  <hr />
+  <!-- <hr />
   <SpButton ref="buttonRef">Test Button</SpButton>
   <SpButton plain>Plain Button</SpButton>
   <SpButton round>Round Button</SpButton>
@@ -146,26 +148,26 @@
 
   <hr />
 
-  <p ref="pRef">test</p>
+  <p ref="pRef">test</p> -->
   <!-- <SpCollapse v-model="collapseNames">
     <SpCollapseItem name="a" title="title a"></SpCollapseItem>
     <SpCollapseItem name="b" title="title b"></SpCollapseItem>
     <SpCollapseItem name="c" title="title c" disabled></SpCollapseItem>
   </SpCollapse> -->
 
-  <SpInput type="text" v-model="inputValue" clearable @input="(e) => (inputValue1 = e)" />
-  <h1>{{ inputValue1 }}</h1>
+  <!-- <SpInput type="text" v-model="inputValue" clearable @input="(e) => (inputValue1 = e)" />
+  <h1>{{ inputValue1 }}</h1> -->
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, h, createVNode } from "vue";
+import { ref, onMounted, h, createVNode, inject } from "vue";
 import { createPopper } from "@popperjs/core";
 import type { Instance, Options } from "@popperjs/core";
 import type { TooltipInstance } from "./components/Tooltip/type";
 import type { ButtonInstance } from "./components/Button/type";
 import type { MenuOption, DropdownInstance } from "./components/Dropdown/type";
 import type { SelectOption } from "./components/Select/type";
-import SpButton from "./components/Button/Button.vue";
+// import SpButton from "./components/Button/Button.vue";
 import SpCollapse from "./components/Collapse/Collapse.vue";
 import SpCollapseItem from "./components/Collapse/CollapseItem.vue";
 import SpIcon from "./components/Icon/Icon.vue";
@@ -350,4 +352,7 @@ const remoteMethod1 = async (query: string) => {
   }));
   return options;
 };
+
+const test = inject("test");
+console.log("test:", test);
 </script>

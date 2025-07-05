@@ -1,17 +1,57 @@
 {
-  "name": "seraphui",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@icesmoke/seraphui",
+  "version": "1.0.0",
+  "description": "A Vue 3 component library",
+  "author": "icesmoke",
+  "license": "MIT",
+  "homepage": "https://github.com/ZSegg/SeraphUI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZSegg/SeraphUI.git"
+  },
+  "keywords": [
+    "vue",
+    "component",
+    "library",
+    "ui",
+    "vue3"
+  ],
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "dist/index.css"
+  ],
+  "main": "./dist/umd/seraphui.umd.cjs",
+  "module": "./dist/es/seraphui.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/es/seraphui.js",
+      "require": "./dist/umd/seraphui.umd.cjs",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./dist/": {
+      "import": "./dist/",
+      "require": "./dist/"
+    },
+    "./index.css": "./dist/index.css"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build-only && npm run move-style",
+    "build-only": "run-p build-es build-umd",
+    "build-es": "vite build --config vite.es.config.ts",
+    "build-umd": "vite build --config vite.umd.config.ts",
+    "move-style": "move-file dist/es/index.css dist/index.css",
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint . --ext .ts",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -28,12 +68,15 @@
     "eslint": "^9.24.0",
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
+    "npm-run-all": "^4.1.5",
     "postcss-color-mix": "^1.1.0",
     "postcss-each": "^1.1.0",
     "postcss-for": "^2.1.1",
     "postcss-normalize": "^13.0.1",
-    "vue": "^3.5.13",
     "vue-router": "^4.5.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -47,9 +90,11 @@
     "postcss-nested": "^7.0.2",
     "typescript": "^5.0.0",
     "vite": "^6.3.0",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitepress": "^1.6.3",
     "vitest": "^3.1.2",
-    "vue-macros": "^3.0.0-beta.8"
+    "vue-macros": "^3.0.0-beta.8",
+    "vue": "^3.5.13"
   }
 }

@@ -63,4 +63,8 @@ watch(checked, (val) => {
   input.value!.checked = val as boolean;
 });
 </script>
-<style scoped></style>
+<style scoped>
+/* .sp-switch {
+  border: 1px solid red;
+} */
+</style>

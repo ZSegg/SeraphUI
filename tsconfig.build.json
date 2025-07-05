@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "jsxFactory": "h", // Vue 3 默认使用 `h` 渲染函数
+    "jsxFragmentFactory": "Fragment", // 支持 Fragment
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["vite/client", "vue-macros/macros-global"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "noImplicitAny": false
+  },
+  "include": ["./src/index.ts", "./src/components/**/*", "./src/hooks/**/*"],
+  "exclude": ["node_modules"]
+}
